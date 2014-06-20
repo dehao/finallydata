@@ -14,16 +14,17 @@ from io import StringIO
 
 df = pd.read_csv('C1finaltheta.csv', delimiter=',')
 print df
-#fig = plt.figure() # Create matplotlib figure
+fig = plt.figure() # Create matplotlib figure
 
-#ax = fig.add_subplot(111) # Create matplotlib axes
+ax = fig.add_subplot(111) # Create matplotlib axes
 #ax2 = ax.twinx() # Create another axes that shares the same x-axis as ax.
 
 #width = 0.4
 #colors = {1: 'r', 2: 'g'}
-df.plot(kind='barh', stacked=True, color=['black', 'white', 'g', 'r', 'g', 'b', 'r'])
+df.plot(kind='barh', stacked=True, ax=ax, color=['black', 'black', 'g', 'r', 'g', 'b', 'r'])
 
 #df.left.plot(kind='bar', color='red', ax=ax)
 #df.right.plot(kind='bar', color='blue', ax=ax2)
+ax.set_ylabel('Agency')
 
 plt.show()
