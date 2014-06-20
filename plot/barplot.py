@@ -23,8 +23,8 @@ ax = fig.add_subplot(111) # Create matplotlib axes
 #colors = {1: 'r', 2: 'g'}
 df.plot(kind='barh', stacked=True, ax=ax, color=['black', 'black', 'g', 'r', 'g', 'b', 'r'])
 
-#df.left.plot(kind='bar', color='red', ax=ax)
-#df.right.plot(kind='bar', color='blue', ax=ax2)
+df.left.plot(kind='bar', color='red', ax=ax)
+df.right.plot(kind='bar', color='blue', ax=ax2)
 
 
 
