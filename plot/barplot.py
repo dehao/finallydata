@@ -25,6 +25,10 @@ df.plot(kind='barh', stacked=True, ax=ax, color=['black', 'black', 'g', 'r', 'g'
 
 #df.left.plot(kind='bar', color='red', ax=ax)
 #df.right.plot(kind='bar', color='blue', ax=ax2)
+
+
+
+
 ax.set_ylabel('Agency')
 
 plt.show()
