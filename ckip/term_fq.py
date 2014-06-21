@@ -168,11 +168,12 @@ for f in listdir(ckip_dir):
 			for term in sentence:
 				#print term['term'], term['pos']
 				if term['pos']=='Na' or term['pos']=='Nb':
-					if len(term['term']) > 1:
-						niceterm = term['term']
-						#print i,niceterm
-						parse.append(niceterm)
-						segfile.write("%s " % niceterm)
+                    if term['term']!='主席' and term['term']!='主席':
+					   if len(term['term']) > 1:
+						  niceterm = term['term']
+						  #print i,niceterm
+						  parse.append(niceterm)
+						  segfile.write("%s " % niceterm)
 
 
 				#str1 = ''.join(str(parse))
