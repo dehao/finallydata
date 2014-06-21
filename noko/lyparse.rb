@@ -34,29 +34,30 @@ Dir.glob("lyfolder/*.txt") do |my_text_file|
 	filename = File.basename("#{my_text_file}", ".txt") 
 	html_doc = File.read("#{my_text_file}")
 	#numarray = Array.new(init_count)
-	regex = /^(?<name>.?.?.?.?.?(主席|委員|部長|署長|局長|副教授|教授|處長|執行秘書|秘書|隊長|科長|組長|參事|法官|在場人員|調查官|董事|理事長|經理|所長|次長|司長|發言|召集|主任|院長).?.?.?.?.?.?)：(?<content>.+)/
+	regex = /^(?<name>.?.?.?.?.?(主席|委員|部長|署長|局長|副教授|教授|處長|執行秘書|秘書|隊長|科長|校長|組長|參事|法官|在場人員|調查官|董事|理事長|經理|所長|次長|司長|發言|召集|主任|院長|書面意見|研究員|會長|義務律師|副會長|執行長|參謀長|負責人|先生|主計長|女士|總臺長|審計長).?.?.?.?.?.?)：(?<content>.+)/
 	#puts html_doc
 
 
 	name, content = html_doc.scan(regex).transpose
 
-	h = Hash.new.tap { |h| name.zip(content).each { |k, v| (h[k] ||= []) << v } }
+	unless name.nil?
+		h = Hash.new.tap { |h| name.zip(content).each { |k, v| (h[k] ||= []) << v } }
+	end
 
 	#keys = h.keys
-
-	h.each do |key, array|
-		puts "#{key}"
-		join_array = array.join("\n")
-		join_array = join_array.gsub("，"," ")
-		join_array = join_array.gsub("、"," ")
-		join_array = join_array.gsub("。"," ")
-		wrap_array = join_array.word_wrap
-		Dir.chdir("lyparsefolder") 
-		File.open("#{filename}_#{key}.txt", 'a+') do |f|
-    		f.puts("#{wrap_array}")
-    		Dir.chdir("..")
-
-		#puts array
+   	unless h.nil?
+		h.each do |key, array|
+			puts "#{key}"
+			join_array = array.join("\n")
+			join_array = join_array.gsub("，"," ")
+			join_array = join_array.gsub("、"," ")
+			join_array = join_array.gsub("。"," ")
+			wrap_array = join_array.word_wrap
+			Dir.chdir("lyparsefolder") 
+			File.open("#{filename}_#{key}.txt", 'a+') do |f|
+    			f.puts("#{wrap_array}")
+    			Dir.chdir("..")
+		end
 	end
 	
 	#i = 0

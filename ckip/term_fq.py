@@ -122,9 +122,9 @@ class TermDocumentMatrix(object):
 
 
 
-ckip_dir='/Users/dehao/github/Lydata/Noko/parsefolder/'
+ckip_dir='/Users/dehao/github/finallydata/noko/lyparsefolder/'
 
-ed_dir='/Users/dehao/github/Lydata/issckip/ckip_ed/'
+ed_dir='/Users/dehao/github/finallydata/noko/ckip_ed_lyparsefolder/'
 
 #file = open('testfile.txt', 'r')
 
@@ -167,7 +167,7 @@ for f in listdir(ckip_dir):
 			segfile.write("\n")
 			for term in sentence:
 				#print term['term'], term['pos']
-				if term['pos']=='Na':
+				if term['pos']=='Na' or term['pos']=='Nb':
 					if len(term['term']) > 1:
 						niceterm = term['term']
 						#print i,niceterm
