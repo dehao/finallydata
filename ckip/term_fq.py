@@ -124,7 +124,7 @@ class TermDocumentMatrix(object):
 
 ckip_dir='/Users/dehao/github/finallydata/noko/lyparsefolder/'
 
-ed_dir='/Users/dehao/github/finallydata/noko/ckip_ed_lyparsefolder/'
+ed_dir='/Users/dehao/github/finallydata/noko/ckip_ed_lyparsefolder_na_termfilter/'
 
 #file = open('testfile.txt', 'r')
 
@@ -168,12 +168,12 @@ for f in listdir(ckip_dir):
 			for term in sentence:
 				#print term['term'], term['pos']
 				if term['pos']=='Na' or term['pos']=='Nb':
-                    if term['term']!='主席' and term['term']!='主席':
-					   if len(term['term']) > 1:
-						  niceterm = term['term']
-						  #print i,niceterm
-						  parse.append(niceterm)
-						  segfile.write("%s " % niceterm)
+					if term['term']!='主席' and term['term']!='同仁' and term['term']!='官員' and term['term']!='委員':
+						if len(term['term']) > 1:
+							niceterm = term['term']
+							#print i,niceterm
+							parse.append(niceterm)
+							segfile.write("%s " % niceterm)
 
 
 				#str1 = ''.join(str(parse))
