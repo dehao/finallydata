@@ -140,7 +140,7 @@ class TermDocumentMatrix(object):
 
 
 
-term_dir='/Users/dehao/github/Lydata/issckip/parse/C1/'
+term_dir='/Users/dehao/github/finallydata/ckip/ckip_ed_all/'
 
 tdm = TermDocumentMatrix()
 docname = []
@@ -169,7 +169,7 @@ print "Docname:"
 #docnamewrite.writerow(docname)
 
 
-with open('docname.csv', "w") as output:
+with open('ckip_ed_all_docname.csv', "w") as output:
     writer = csv.writer(output, lineterminator='\n')
     for val in docname:
         writer.writerow([val])    
@@ -180,9 +180,9 @@ with open('docname.csv', "w") as output:
 #tdm.add_doc(str1)
 
 
-				
+print "Docname write complete"			
 
-tdm.write_csv('matrix.csv', cutoff=9)
+#tdm.write_csv('matrix.csv', cutoff=9)
 
 #MyPrettyPrinter().pprint(countdic)
 
@@ -191,44 +191,45 @@ for key, value in dict.items(countdic):
 	print key
 '''
 #j = 0
-flag = []
-cutdet = iter(tdm.rows(cutoff=1))
-next(cutdet)
+#flag = []
+#cutdet = iter(tdm.rows(cutoff=1))
+#next(cutdet)
 
 
 
-for row in cutdet:
-    flag.append(row)
+#for row in cutdet:
+#    flag.append(row)
     #print row
 
-cutdetlist = iter(tdm.rows(cutoff=1))
-next(cutdetlist)
-cutdetlist = list(cutdetlist)
+#cutdetlist = iter(tdm.rows(cutoff=1))
+#next(cutdetlist)
+#cutdetlist = list(cutdetlist)
 
 
-flagging = mat(flag);
+#flagging = mat(flag);
 #print flagging
-rows,cols = flagging.shape
+#rows,cols = flagging.shape
 #print rows
-bet =  int(rows)
+#bet =  int(rows)
 #print bet
 
 
-cutdetarray = np.asarray(cutdetlist)
+#cutdetarray = np.asarray(cutdetlist)
 #print cutdetarray.transpose()
 
-mindflist = []
-for i in cutdetarray.transpose():
-	countofzero = int(list(i).count(0))
+#mindflist = []
+#for i in cutdetarray.transpose():
+#	countofzero = int(list(i).count(0))
 	#print countofzero
 	#print bet
 	#print bet - countofzero
-	noofdf = bet - countofzero
-	mindflist.append(noofdf)
+#	noofdf = bet - countofzero
+#	mindflist.append(noofdf)
 
 
-mindfarray = np.array(mindflist)
-percenttileforcutoff =  np.percentile(mindfarray, 90)
+#mindfarray = np.array(mindflist)
+#percenttileforcutoff =  np.percentile(mindfarray, 90)
+percenttileforcutoff = 20
 
 print "Cutoff from percentile:"
 print percenttileforcutoff
@@ -251,19 +252,19 @@ for row in itercars:
 #matrix = mat( [[1,1,1,3,2], [3,3,3,4,5], [4,4,4,1,1], [5,5,5,3,2], [0,2,0,4,4]] );
 matrix = mat(origin);
 print "Original matrix:"
-print matrix
+#print matrix
 U, s, V = linalg.svd( matrix, full_matrices=True  )
 print "U:"
-print U
+#print U
 print "sigma:"
-print s
+#print s
 print "VT:"
-print V
-print U.shape, s.shape, V.shape
+#print V
+#print U.shape, s.shape, V.shape
 #dimensions = 2
 rows,cols = matrix.shape
 #original term matrix
-conterm = csv.writer(open('originalterm.csv', 'wb'))
+conterm = csv.writer(open('ckip_ed_all_originalterm.csv', 'wb'))
 conterm.writerow(saveterm[0])
 conterm.writerow(s)
 beat = square(s)
@@ -300,7 +301,7 @@ print maxofcolandrow
 for index in xrange(dimensions, maxofcolandrow):
 	s[index]=0
 print "reduced sigma:"
-print s
+#print s
 
 #Reconstruct MATRIX'
 #print len(matrix)
@@ -314,54 +315,56 @@ print s
 #print sandv.shape
 
 
-reconstructedMatrix= dot(dot(U,linalg.diagsvd(s,len(matrix),len(V))),V)
+#reconstructedMatrix= dot(dot(U,linalg.diagsvd(s,len(matrix),len(V))),V)
 #Print transform
 print "reconstructed:"
-print reconstructedMatrix
+#print reconstructedMatrix
 
-countterm = []
+#countterm = []
 
 
-for i in range(0, cols):
-	countterm.append(i)
+#for i in range(0, cols):
+#	countterm.append(i)
 
 
 #print countterm
 
 
 #print out reconstructed term
-conterm = csv.writer(open('sigmaterm.csv', 'wb'))
-conterm.writerow(saveterm[0])
-conterm.writerow(s)
-conterm.writerow(countterm)
+#conterm = csv.writer(open('ckip_ed_all_sigmaterm.csv', 'wb'))
+#conterm.writerow(saveterm[0])
+#conterm.writerow(s)
+#conterm.writerow(countterm)
+
+
 print "reducedofu"
 reducedumatrix = np.delete(U, np.s_[tholdindex:], 1)
 print reducedumatrix
 
 
 print reducedumatrix.shape
-with open('C1reducedu.csv', 'wb') as f:
+with open('ckip_ed_all_reducedu.csv', 'wb') as f:
 	a = numpy.asarray(reducedumatrix)
 	numpy.savetxt(f, a, delimiter=",")
 
 
 
 
-with open('reconstructedterm.csv', 'wb') as f:
-	a = numpy.asarray(reconstructedMatrix)
-	numpy.savetxt(f, a, delimiter=",")
+#with open('reconstructedterm.csv', 'wb') as f:
+#	a = numpy.asarray(reconstructedMatrix)
+#	numpy.savetxt(f, a, delimiter=",")
 
 
-U, s, V = np.linalg.svd(matrix, full_matrices=False)
+#U, s, V = np.linalg.svd(matrix, full_matrices=False)
 
-print U.shape, s.shape, V.shape
+#print U.shape, s.shape, V.shape
 
-sandv = np.dot(np.diag(s), V)
-print "sigmaandV"
+#sandv = np.dot(np.diag(s), V)
+#print "sigmaandV"
 
-print sandv
+#print sandv
 
-with open('sigmaandV.csv', 'wb') as f:
-	a = numpy.asarray(sandv)
-	numpy.savetxt(f, a, delimiter=",")
+#with open('ckip_ed_all_sigmaandV.csv', 'wb') as f:
+#	a = numpy.asarray(sandv)
+#	numpy.savetxt(f, a, delimiter=",")
 
