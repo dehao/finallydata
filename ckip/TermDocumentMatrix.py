@@ -169,7 +169,7 @@ print "Docname:"
 #docnamewrite.writerow(docname)
 
 
-with open('ckip_ed_all_docname.csv', "w") as output:
+with open('ckip_ed_all_85_docname.csv', "w") as output:
     writer = csv.writer(output, lineterminator='\n')
     for val in docname:
         writer.writerow([val])    
@@ -191,7 +191,7 @@ for key, value in dict.items(countdic):
 	print key
 '''
 #j = 0
-#flag = []
+flag = []
 #cutdet = iter(tdm.rows(cutoff=1))
 #next(cutdet)
 
@@ -205,6 +205,7 @@ for key, value in dict.items(countdic):
 #next(cutdetlist)
 #cutdetlist = list(cutdetlist)
 
+print "cutdetlist:"
 
 #flagging = mat(flag);
 #print flagging
@@ -264,7 +265,7 @@ print "VT:"
 #dimensions = 2
 rows,cols = matrix.shape
 #original term matrix
-conterm = csv.writer(open('ckip_ed_all_originalterm.csv', 'wb'))
+conterm = csv.writer(open('ckip_ed_all_85_originalterm.csv', 'wb'))
 conterm.writerow(saveterm[0])
 conterm.writerow(s)
 beat = square(s)
@@ -274,7 +275,7 @@ cumubeat = accumu(beat)
 print "Total Energy:"
 sumbeat = sum(beat)
 print sumbeat
-beathold = sumbeat * 0.9
+beathold = sumbeat * 0.85
 print "Energy thold:"
 print beathold
 for index, x in enumerate(cumubeat):
@@ -343,7 +344,7 @@ print reducedumatrix
 
 
 print reducedumatrix.shape
-with open('ckip_ed_all_reducedu.csv', 'wb') as f:
+with open('ckip_ed_all_85_reducedu.csv', 'wb') as f:
 	a = numpy.asarray(reducedumatrix)
 	numpy.savetxt(f, a, delimiter=",")
 
